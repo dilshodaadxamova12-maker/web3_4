@@ -1,131 +1,260 @@
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0d0d12;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --accent-color: #6366f1;
-  --accent-hover: #4f46e5;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --font-main: 'Outfit', sans-serif;
+  --font-accent: 'Sora', sans-serif;
+  
+  --bg-color: #050508;
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #ec4899;
+  --accent-glow: rgba(139, 92, 246, 0.4);
+  
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.06);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
 }
 
-body {
+* {
   margin: 0;
-  display: flex;
-  place-content: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, #1e1b4b, #0d0d12);
-}
-
-#root {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
-}
-
-button {
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  background-color: var(--accent-color);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  color: white;
-}
-
-button:hover {
-  background-color: var(--accent-hover);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
-}
-
-button:disabled {
-  background-color: #374151;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-input {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 0.8rem;
-  color: white;
-  width: 100%;
-  margin-bottom: 1rem;
+  padding: 0;
   box-sizing: border-box;
 }
 
-input:focus {
-  outline: none;
-  border-color: var(--accent-color);
+body {
+  font-family: var(--font-main);
+  background: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+/* Background elements */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15), transparent 40%);
+  z-index: -1;
 }
 
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4rem;
+  padding: 1.5rem 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-family: var(--font-accent);
+  font-size: 1.75rem;
   font-weight: 800;
-  background: linear-gradient(to right, #818cf8, #c084fc);
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 25px 60px rgba(139, 92, 246, 0.15);
+  background: var(--glass-hover);
+}
+
+/* Mint Panel */
+.mint-panel {
+  max-width: 600px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.mint-panel h2 {
+  font-family: var(--font-accent);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.mint-panel p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.mint-form {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Inputs */
+input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #334155;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* NFT Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.nft-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .nft-image {
   width: 100%;
-  height: 200px;
-  border-radius: 12px;
+  aspect-ratio: 1;
   object-fit: cover;
-  margin-bottom: 1rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.5s ease;
 }
 
+.nft-card:hover .nft-image {
+  transform: scale(1.03);
+}
+
+.nft-details h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.votes-count {
+  color: var(--accent-secondary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.vote-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  margin-top: auto;
+}
+
+.vote-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-primary);
+}
+
+/* Wallet Info */
+.wallet-info {
+  background: var(--glass-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+}
+
+.address {
+  font-family: monospace;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Status Messages */
 .status-msg {
+  margin-top: 1.5rem;
   padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
 }
 
-.success { background: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.2); }
-.error { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+.success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.no-nfts {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  border: 2px dashed var(--glass-border);
+  border-radius: 24px;
+}
+
+@media (max-width: 768px) {
+  .mint-form {
+    flex-direction: column;
+  }
+}
